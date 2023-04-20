@@ -28,6 +28,7 @@ body {
 .crossActive {
     background-color:#46a3ff20;
     background-image: url('img/x.svg');
+    background-repeat: no-repeat;
     background-position: center;
     background-size: 50%;
     border: 1px solid #46a3ff;
