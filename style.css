@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    width: 300px;
+    height: 300px;
+
+}
+
+.box {
+    background-color: #e3e3e3;
+}
+
+.crossActive {
+    background-color:#46a3ff20;
+    background-image: url('img/x.svg');
+    background-position: center;
+    background-size: 50%;
+    border: 1px solid #46a3ff;
+}
+
+.circleActive {
+    background-color: #ff827e20;
+    background-image: url('img/o.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    border: 1px solid #ff827e;
+}
+
