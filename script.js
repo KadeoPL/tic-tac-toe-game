@@ -51,6 +51,37 @@ function showAlert(message) {
       alertDiv.appendChild(alertBtn);
 
       document.body.appendChild(alertDiv);
+      break;
+    
+    case 'winCross':
+      alertDiv.classList.add('alertDiv');
+      alertDiv.textContent = 'Gratuluję wygranej!';
+
+      alertHeading.classList.add('alertHeading');
+      alertHeading.textContent = 'Gracz krzyżyk wygrywa!';
+      alertDiv.prepend(alertHeading);
+
+      alertBtn.classList.add('alertBtn');
+      alertBtn.textContent = 'Zagraj ponownie';
+      alertDiv.appendChild(alertBtn);
+
+      document.body.appendChild(alertDiv);
+      break; 
+      
+    case 'draw':
+      alertDiv.classList.add('alertDiv');
+      alertDiv.textContent = 'Remis!';
+
+      alertHeading.classList.add('alertHeading');
+      alertHeading.textContent = 'Żaden z graczy nie wygrał!';
+      alertDiv.prepend(alertHeading);
+
+      alertBtn.classList.add('alertBtn');
+      alertBtn.textContent = 'Zagraj ponownie';
+      alertDiv.appendChild(alertBtn);
+
+      document.body.appendChild(alertDiv);
+      break;  
   }
 }
 
