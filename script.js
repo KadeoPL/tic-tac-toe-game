@@ -1,21 +1,3 @@
-/*function showAlert() {
-  const alertDiv = document.createElement('div');
-  alertDiv.classList.add('alertDiv');
-  alertDiv.textContent = 'Pole już wybrane, nie możesz wybrać tego pola!';
-
-  const alertHeading = document.createElement('h1');
-  alertHeading.classList.add('alertHeading');
-  alertHeading.textContent = 'upppps!';
-  alertDiv.prepend(alertHeading);
-
-  const alertBtn = document.createElement('button');
-  alertBtn.classList.add('alertBtn');
-  alertBtn.textContent = 'Spróbuj ponownie';
-  alertDiv.appendChild(alertBtn);
-
-  document.body.appendChild(alertDiv);
-}*/
-
 function showAlert(message) {
   const alertDiv = document.createElement('div');
   const alertHeading = document.createElement('h1');
@@ -42,11 +24,11 @@ function showAlert(message) {
       alertDiv.classList.add('alertDiv');
       alertDiv.textContent = 'Gratuluję wygranej!';
 
-      alertHeading.classList.add('alertHeading');
+      alertHeading.classList.add('winHeading');
       alertHeading.textContent = 'Gracz kółko wygrywa!';
       alertDiv.prepend(alertHeading);
 
-      alertBtn.classList.add('alertBtn');
+      alertBtn.classList.add('winBtn');
       alertBtn.textContent = 'Zagraj ponownie';
       alertDiv.appendChild(alertBtn);
 
@@ -57,11 +39,11 @@ function showAlert(message) {
       alertDiv.classList.add('alertDiv');
       alertDiv.textContent = 'Gratuluję wygranej!';
 
-      alertHeading.classList.add('alertHeading');
+      alertHeading.classList.add('winHeading');
       alertHeading.textContent = 'Gracz krzyżyk wygrywa!';
       alertDiv.prepend(alertHeading);
 
-      alertBtn.classList.add('alertBtn');
+      alertBtn.classList.add('winBtn');
       alertBtn.textContent = 'Zagraj ponownie';
       alertDiv.appendChild(alertBtn);
 
@@ -70,10 +52,10 @@ function showAlert(message) {
       
     case 'draw':
       alertDiv.classList.add('alertDiv');
-      alertDiv.textContent = 'Remis!';
+      alertDiv.textContent = 'Żaden z graczy nie wygrał!';
 
       alertHeading.classList.add('alertHeading');
-      alertHeading.textContent = 'Żaden z graczy nie wygrał!';
+      alertHeading.textContent = 'Remis!';
       alertDiv.prepend(alertHeading);
 
       alertBtn.classList.add('alertBtn');
@@ -86,7 +68,10 @@ function showAlert(message) {
 }
 
 function restartGame() {
-
+  const winBtn = document.querySelector('.winBtn');
+  winBtn.addEventListener('click', () => {
+    location.reload();
+  });
 }
   
 function addClass(element, className) {
@@ -147,6 +132,7 @@ let endGame = false;
 let playerTurn = 'circle';
 let movesCount = 0;
 
+/* ---- Player vs. Player ------
 boxes.forEach((box) => {
   box.addEventListener('click', () => {
     movesCount++;
@@ -156,6 +142,7 @@ boxes.forEach((box) => {
         checkWin();
       } else {
         playerTurn = 'circle';
+        movesCount--;
       };
       
     } else {
@@ -164,15 +151,39 @@ boxes.forEach((box) => {
         checkWin();
       } else {
         playerTurn = 'cross';
+        movesCount--;
       };
     }
-    const gameResult = checkWin();
-    if (gameResult === 'circleWin') {
+    */
+
+    boxes.forEach((box) => {
+      box.addEventListener('click', () => {
+        movesCount++;
+        if (playerTurn === 'circle') {
+          if(addClass(box, 'circleActive') === true){
+            playerTurn = 'cross';
+            checkWin();
+          } else {
+            playerTurn = 'circle';
+            movesCount--;
+          };
+          
+        } else {
+          const crossbox = document.querySelector("div:not([circleActive || crossActive]");
+          addClass(crossbox, 'circleActive');
+        }
+
+
+  const gameResult = checkWin();
+  if (gameResult === 'circleWin') {
       showAlert('winCircle');
+      restartGame();
     } else if (gameResult === 'crossWin') {
       showAlert('winCross');
+      restartGame();
     } else if (gameResult === 'draw') {
       showAlert('draw');
+      restartGame();
     }
   });
 });

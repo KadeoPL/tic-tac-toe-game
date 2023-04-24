@@ -50,7 +50,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 260px;
+    width: 350px;
     height: 200px;
     background-color: white;
     border-radius: 5px;
@@ -72,7 +72,7 @@ body {
 }
 
 .alertBtn {
-    margin-top: 20px;
+    margin-top: 30px;
     font-family: Montserrat;
     font-weight: 700;
     padding: 10px 15px;
@@ -84,4 +84,32 @@ body {
 
 .alertBtn:hover {
     background-color: #ec5954;
+}
+
+.winHeading {
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #28fa67;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.winBtn {
+    margin-top: 10px;
+    font-family: Montserrat;
+    font-weight: 700;
+    padding: 10px 15px;
+    color: white;
+    background-color: #28fa67;
+    border: none;
+    border-radius: 8px;
+}
+
+.winBtn:hover {
+    background-color: #19b448;
+}
+
+.winBtn:active, .alertBtn:active {
+    scale: 0.9;
 }
