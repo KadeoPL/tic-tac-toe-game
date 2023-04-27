@@ -37,7 +37,7 @@ function showAlert(message) {
     
     case 'winCross':
       alertDiv.classList.add('alertDiv');
-      alertDiv.textContent = 'Gratuluję wygranej!';
+      alertDiv.textContent = 'Spróbuj ponownie i zagraj jeszcze raz!';
 
       alertHeading.classList.add('winHeading');
       alertHeading.textContent = 'Gracz krzyżyk wygrywa!';
