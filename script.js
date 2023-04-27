@@ -112,7 +112,7 @@ function addClass(element, className) {
         boxC.classList.contains('crossActive')
       ) {
         return 'crossWin';
-      } else if(movesCount === 9){
+      } else if (movesCount === 5){
         return 'draw';
       }
     }
@@ -128,7 +128,6 @@ let gameResult = '';
 
 boxes.forEach((box) => {
   box.addEventListener('click', () => {
-    movesCount++;
     if(addClass(box, 'circleActive') === true){;
       gameResult = checkWin();
       if (gameResult === 'circleWin') {
@@ -165,6 +164,7 @@ boxes.forEach((box) => {
           break;
         }
       }
+      movesCount++;
     }
   })
 })
