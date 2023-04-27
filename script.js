@@ -66,13 +66,6 @@ function showAlert(message) {
       break;  
   }
 }
-
-function restartGame() {
-  const winBtn = document.querySelector('.winBtn');
-  winBtn.addEventListener('click', () => {
-    location.reload();
-  });
-}
   
 function addClass(element, className) {
     if(element.classList.contains('circleActive') || element.classList.contains('crossActive')){
@@ -128,62 +121,50 @@ function addClass(element, className) {
   
 const boxes = document.querySelectorAll('div div');
 
-let endGame = false;
 let playerTurn = 'circle';
 let movesCount = 0;
+let gameResult = '';
 
-/* ---- Player vs. Player ------
+
 boxes.forEach((box) => {
   box.addEventListener('click', () => {
     movesCount++;
-    if (playerTurn === 'circle') {
-      if(addClass(box, 'circleActive') === true){
-        playerTurn = 'cross';
-        checkWin();
-      } else {
-        playerTurn = 'circle';
-        movesCount--;
-      };
+    if(addClass(box, 'circleActive') === true){;
+      gameResult = checkWin();
+      if (gameResult === 'circleWin') {
+        showAlert('winCircle');
+        const restartButton = document.querySelector('.winBtn');
+        restartButton.addEventListener('click', () => {
+          location.reload();
+        });
+      } else if (gameResult === 'draw') {
+        showAlert('draw');
+        const restartButton = document.querySelector('.alertBtn');
+        restartButton.addEventListener('click', () => {
+          location.reload();
+        });
+      }
       
-    } else {
-      if(addClass(box, 'crossActive') === true){
-        playerTurn = 'circle';
-        checkWin();
-      } else {
-        playerTurn = 'cross';
-        movesCount--;
-      };
-    }
-    */
-
-    boxes.forEach((box) => {
-      box.addEventListener('click', () => {
-        movesCount++;
-        if (playerTurn === 'circle') {
-          if(addClass(box, 'circleActive') === true){
-            playerTurn = 'cross';
-            checkWin();
-          } else {
-            playerTurn = 'circle';
-            movesCount--;
-          };
-          
-        } else {
-          const crossbox = document.querySelector("div:not([circleActive || crossActive]");
-          addClass(crossbox, 'circleActive');
+      for (let i = 0; i < boxes.length; i++) {
+        if (!boxes[i].classList.contains('circleActive') && !boxes[i].classList.contains('crossActive')) {
+          boxes[i].classList.add('crossActive');
+          gameResult = checkWin();
+          if (gameResult === 'crossWin') {
+            showAlert('winCross');
+            const restartButton = document.querySelector('.winBtn');
+            restartButton.addEventListener('click', () => {
+              location.reload();
+        });
+          } else if (gameResult === 'draw') {
+            showAlert('draw');
+            const restartButton = document.querySelector('.alertBtn');
+            restartButton.addEventListener('click', () => {
+              location.reload();
+        });
+          }
+          break;
         }
-
-
-  const gameResult = checkWin();
-  if (gameResult === 'circleWin') {
-      showAlert('winCircle');
-      restartGame();
-    } else if (gameResult === 'crossWin') {
-      showAlert('winCross');
-      restartGame();
-    } else if (gameResult === 'draw') {
-      showAlert('draw');
-      restartGame();
+      }
     }
-  });
-});
+  })
+})
