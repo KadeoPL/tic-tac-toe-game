@@ -135,15 +135,15 @@ boxes.forEach((box) => {
         const restartButton = document.querySelector('.winBtn');
         restartButton.addEventListener('click', () => {
           location.reload();
-          return;
         });
+        return;
       } else if (gameResult === 'draw') {
         showAlert('draw');
         const restartButton = document.querySelector('.alertBtn');
         restartButton.addEventListener('click', () => {
           location.reload();
-          return;
         });
+        return;
       }
       
       for (let i = 0; i < boxes.length; i++) {
