@@ -145,7 +145,7 @@ boxes.forEach((box) => {
         });
         return;
       }
-      
+      movesCount++;
       for (let i = 0; i < boxes.length; i++) {
         if (!boxes[i].classList.contains('circleActive') && !boxes[i].classList.contains('crossActive')) {
           boxes[i].classList.add('crossActive');
@@ -166,7 +166,7 @@ boxes.forEach((box) => {
           break;
         }
       }
-      movesCount++;
+      
     }
   })
 })
