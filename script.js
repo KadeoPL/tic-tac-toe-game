@@ -81,7 +81,6 @@ function addClass(element, className) {
       return true;
     }};
 
-
   function checkWin() {
     const winningPositions = [
       [0, 1, 2],
@@ -129,6 +128,7 @@ let gameResult = '';
 boxes.forEach((box) => {
   box.addEventListener('click', () => {
     if(addClass(box, 'circleActive') === true){;
+      movesCount++;
       gameResult = checkWin();
       if (gameResult === 'circleWin') {
         showAlert('winCircle');
@@ -145,7 +145,6 @@ boxes.forEach((box) => {
         });
         return;
       }
-      movesCount++;
       for (let i = 0; i < boxes.length; i++) {
         if (!boxes[i].classList.contains('circleActive') && !boxes[i].classList.contains('crossActive')) {
           boxes[i].classList.add('crossActive');
