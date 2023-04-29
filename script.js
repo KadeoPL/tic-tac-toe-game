@@ -128,8 +128,8 @@ let gameResult = '';
 boxes.forEach((box) => {
   box.addEventListener('click', () => {
     if(addClass(box, 'circleActive') === true){;
-      movesCount++;
       gameResult = checkWin();
+      movesCount++;
       if (gameResult === 'circleWin') {
         showAlert('winCircle');
         const restartButton = document.querySelector('.winBtn');
