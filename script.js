@@ -111,7 +111,10 @@ function addClass(element, className) {
         boxC.classList.contains('crossActive')
       ) {
         return 'crossWin';
-      } else if (movesCount === 5){
+      } /*else if (movesCount === 5){
+        return 'draw';
+      }*/
+      else if (boxes.classList.contains('circleActive') && boxes.classList.contains('crossActive')) {
         return 'draw';
       }
     }
@@ -128,8 +131,8 @@ let gameResult = '';
 boxes.forEach((box) => {
   box.addEventListener('click', () => {
     if(addClass(box, 'circleActive') === true){;
+      movesCount++;      
       gameResult = checkWin();
-      movesCount++;
       if (gameResult === 'circleWin') {
         showAlert('winCircle');
         const restartButton = document.querySelector('.winBtn');
@@ -165,7 +168,6 @@ boxes.forEach((box) => {
           break;
         }
       }
-      
     }
   })
 })
