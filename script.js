@@ -81,45 +81,55 @@ function addClass(element, className) {
       return true;
     }};
 
-  function checkWin() {
-    const winningPositions = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-  
-    for (let i = 0; i < winningPositions.length; i++) {
-      const [a, b, c] = winningPositions[i];
-      const boxA = boxes[a];
-      const boxB = boxes[b];
-      const boxC = boxes[c];
-  
-      if (
-        boxA.classList.contains('circleActive') &&
-        boxB.classList.contains('circleActive') &&
-        boxC.classList.contains('circleActive')
-      ) {
-        return 'circleWin';
-      } else if (
-        boxA.classList.contains('crossActive') &&
-        boxB.classList.contains('crossActive') &&
-        boxC.classList.contains('crossActive')
-      ) {
-        return 'crossWin';
-      } /*else if (movesCount === 5){
-        return 'draw';
-      }*/
-      else if (boxes.classList.contains('circleActive') && boxes.classList.contains('crossActive')) {
+    function checkWin() {
+      const winningPositions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+    
+      let isBoardFilled = true;
+    
+      for (let i = 0; i < winningPositions.length; i++) {
+        const [a, b, c] = winningPositions[i];
+        const boxA = boxes[a];
+        const boxB = boxes[b];
+        const boxC = boxes[c];
+    
+        if (
+          boxA.classList.contains('circleActive') &&
+          boxB.classList.contains('circleActive') &&
+          boxC.classList.contains('circleActive')
+        ) {
+          return 'circleWin';
+        } else if (
+          boxA.classList.contains('crossActive') &&
+          boxB.classList.contains('crossActive') &&
+          boxC.classList.contains('crossActive')
+        ) {
+          return 'crossWin';
+        }
+    
+        if (
+          !boxA.classList.contains('circleActive') ||
+          !boxB.classList.contains('circleActive') ||
+          !boxC.classList.contains('circleActive')
+        ) {
+          isBoardFilled = false;
+        }
+      }
+    
+      if (isBoardFilled) {
         return 'draw';
       }
+    
+      return;
     }
-    return ;
-  }
   
 const boxes = document.querySelectorAll('div div');
 
